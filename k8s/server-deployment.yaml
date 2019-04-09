@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector: # selector to find a set of pods to control
+    matchLabels: 
+      component: server # "component" is a randomly assigned word. Here just key-value pair, suitable for my needs
+  template:
+    metadata:
+      labels: 
+        component: server # template for our label up here^^^
+    spec:
+      containers:
+        - name: server
+          image: stephengrider/multi-server
+          ports:
+            - containerPort: 5000
