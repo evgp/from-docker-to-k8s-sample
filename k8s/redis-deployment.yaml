@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-depoyment
+spec:
+  replicas: 1 # there is could be a cluster mode of redis to implement more than one replica at a time
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+    spec:
+      containers: 
+        - name: redis
+          image: redis #public repository one
+          ports:
+            - containerPort: 6379

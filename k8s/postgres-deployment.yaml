@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      component: postgres
+  template: # template, that used for every pod
+    metadata:
+      labels:
+        component: postgres
+    spec:
+      volumes: 
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim # from database-persistent-volume config
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts: #plural('s) means yaml array 
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data # data directory that postgres uses for data storage
+              # mountPath nested into subPath in our storage
+              subPath: postgres # any data stored by the container will be stored inside subPath of our persistent volume
