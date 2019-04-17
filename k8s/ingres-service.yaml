@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  name: ingress-service
+  annotations: #additional config options higher level config for ingress object
+    kubernetes.io/ingress.class: nginx # we want to create ingress contr based on nginx
+    nginx.ingress.kubernetes.io/rewrite-target: / # how to behave actual copy of nginx
+spec: #series of a different rules
+  rules:
+    - http:
+        paths: # there are two possible paths that we routing to
+          - path: /
+            backend: # we wanna send that request to whatever set of pods are covered by the following service
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/ # we don't specify ip addresses for the services, we just identifying them by the name of the service and port num
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
