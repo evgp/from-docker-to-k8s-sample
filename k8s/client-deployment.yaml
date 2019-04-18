@@ -14,6 +14,6 @@ spec: #its specification
     spec:
       containers:
         - name: client
-          image: stephengrider/multi-client
+          image: eugocker/multi-client
           ports:
             - containerPort: 3000

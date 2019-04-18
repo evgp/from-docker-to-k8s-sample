@@ -14,7 +14,7 @@ spec:
     spec: #what this pod is running
       containers: 
         - name: worker
-          image: stephengrider/multi-worker
+          image: eugocker/multi-worker
           env: 
             - name: REDIS_HOST
               value: redis-cluster-ip-service
