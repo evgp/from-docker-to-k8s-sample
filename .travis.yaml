@@ -16,7 +16,7 @@ before_install:
   - gcloud auth activate-service-account --key-file gcloud-key.json # authentification to gcloud account. gcloud-key.json already unencrypted
   - gcloud config set project wide-planet-237901 # ID from gcloud project SELECTOR!!! not my name of the project
   - gcloud config set compute/zone us-central1-a # Location from Kubernetes engine -> Location
-  - gcloud container cluster get-credentials multi-claster # the name of my cluster
+  - gcloud container clusters get-credentials multi-claster # the name of my cluster
   # end
   # Login to Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_PASSWORD" # make sure to create env vars inside the project
