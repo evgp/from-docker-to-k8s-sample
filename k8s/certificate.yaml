@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: k9s-ilita-online-tls
+spec:
+  secretName: k8s-ilita-online
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: k8s.ilita.online
+  dnsNames:
+    - k8s.ilita.online
+    - www.k8s.ilita.online
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - k8s.ilita.online
+          - www.k8s.ilita.online
