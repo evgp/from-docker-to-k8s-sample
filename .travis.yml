@@ -19,7 +19,7 @@ before_install:
   - gcloud container clusters get-credentials multi-claster # the name of my cluster
   # end
   # Login to Docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin "$DOCKER_PASSWORD" # make sure to create env vars inside the project
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # make sure to create env vars inside the project
   # build the test version of the project with .dev version of Dockerfile
   - docker build -t eugocker/react-test -f ./client/Dockerfile.dev ./client # build context at the end
 
